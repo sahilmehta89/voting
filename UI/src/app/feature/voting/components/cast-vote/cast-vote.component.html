@@ -1,0 +1,31 @@
+<div>
+    <div class="card mt-2">
+        <div class="card-body">
+            <form [formGroup]="castVoteFormGroup" (ngSubmit)="onClickCastVote()">
+                <div class="row">
+                    <div class="col-6">
+                        <mat-form-field class="w-100">
+                            <mat-label>I am</mat-label>
+                            <mat-select formControlName="voter" required>
+                                <mat-option>Select</mat-option>
+                                <mat-option *ngFor="let voterViewModel of votersViewModel" [value]="voterViewModel.id"
+                                    [disabled]="voterViewModel.hasVoted === true">{{voterViewModel.name}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-6">
+                        <mat-form-field class="w-100">
+                            <mat-label>I vote for</mat-label>
+                            <mat-select formControlName="candidate" required>
+                                <mat-option>Select</mat-option>
+                                <mat-option *ngFor="let candidateViewModel of candidatesViewModel"
+                                    [value]="candidateViewModel.id">{{candidateViewModel.name}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <button mat-raised-button color="primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>

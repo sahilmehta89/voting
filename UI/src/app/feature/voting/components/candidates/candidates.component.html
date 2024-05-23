@@ -1,0 +1,41 @@
+<div>
+    <div class="card mt-2">
+        <div class="card-body">
+            <form [formGroup]="addCandidateFormGroup" (ngSubmit)="onClickAddCandidate()">
+                <div class="form-group">
+                    <mat-form-field class="w-100">
+                        <mat-label>Add Candidate</mat-label>
+                        <input matInput formControlName="name" placeholder="Enter candidate name">
+                    </mat-form-field>
+                </div>
+                <div class="form-group">
+                    <button mat-raised-button color="primary" [disabled]="!addCandidateFormGroup.valid">Submit</button>
+                    <button mat-raised-button type="button" color="warn" (click)="onClickCancel()"
+                        class="ms-2">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="card mt-2">
+        <div class="card-header">All Candidates</div>
+        <div class="card-body">
+            <table mat-table [dataSource]="candidatesViewModel">
+                <!-- Name Column -->
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef>Name</th>
+                    <td mat-cell *matCellDef="let row">{{row.name}}</td>
+                </ng-container>
+
+                <!-- State Column -->
+                <ng-container matColumnDef="votes">
+                    <th mat-header-cell *matHeaderCellDef>Votes</th>
+                    <td mat-cell *matCellDef="let row">{{row.votes}}</td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </div>
+    </div>
+</div>
